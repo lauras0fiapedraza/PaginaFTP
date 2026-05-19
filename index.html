@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guía FTP — Página educativa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <div class="brand">FTP_CORE</div>
+            <nav class="nav">
+                <a href="#protocolo" class="active">Protocolo</a>
+                <a href="#flujo">Flujo</a>
+                <a href="#puertos">Puertos</a>
+                <a href="#seguridad">Seguridad</a>
+            </nav>
+            <div class="actions">
+                <a class="btn ghost" href="https://datatracker.ietf.org/doc/html/rfc959" target="_blank" rel="noreferrer">Ver RFC 959</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="wrap hero-inner">
+                <p class="kicker">Establishing connection...</p>
+                <h1>Moviendo Datos <span class="accent">a Través del Tiempo</span></h1>
+                <p class="lead">Explora la arquitectura que permite compartir archivos desde 1971. FTP — la columna vertebral de la transferencia digital.</p>
+                <div class="hero-ctas">
+                    <a href="#protocolo" class="btn primary">Empezar Guía</a>
+                    <a href="https://datatracker.ietf.org/doc/html/rfc959" target="_blank" class="btn">Ver RFC 959</a>
+                </div>
+            </div>
+            <div class="stream"></div>
+        </section>
+
+        <section id="protocolo" class="section wrap">
+            <div class="grid two-col">
+                <div>
+                    <h2>¿Qué es FTP?</h2>
+                    <p class="muted">Imagina un <strong>Buzón Digital</strong> universal. FTP (File Transfer Protocol) define cómo dos sistemas intercambian archivos de forma ordenada, confiable y estandarizada.</p>
+                    <p>FTP separa el control (comandos) del canal de datos. Se usa para listar, subir y bajar archivos entre un cliente y un servidor remoto.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">✉️</div>
+                    <h3>Metáfora del Buzón</h3>
+                    <p class="muted">Ordenado, jerárquico y persistente — así piensa FTP sobre archivos y directorios remotos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="flujo" class="section dark-bg">
+            <div class="wrap text-center">
+                <h2>El viaje de tus archivos</h2>
+                <p class="muted">El diálogo invisible entre el Cliente y el Servidor</p>
+            </div>
+            <div class="wrap flow">
+                <div class="node client">
+                    <div class="node-icon">💻</div>
+                    <div class="node-title">Cliente</div>
+                    <div class="node-sub">User Agent</div>
+                </div>
+
+                <div class="pipe">
+                    <div class="pulse"></div>
+                </div>
+
+                <div class="node server">
+                    <div class="node-icon">🖥️</div>
+                    <div class="node-title">Servidor</div>
+                    <div class="node-sub">Remote Host</div>
+                </div>
+
+                <div class="steps">
+                    <div class="step"><strong>01. HANDSHAKE</strong><span>El cliente inicia la conexión por el puerto 21.</span></div>
+                    <div class="step"><strong>02. AUTHENTICATE</strong><span>Intercambio de credenciales (USER / PASS).</span></div>
+                    <div class="step"><strong>03. DATA TRANSFER</strong><span>Se abre un canal separado para el flujo real de bytes.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="puertos" class="section wrap">
+            <div class="grid two-col">
+                <div class="card">
+                    <span class="chip">Port 21</span>
+                    <h3>Canal de Control</h3>
+                    <p class="muted">Aquí viajan los comandos: USER, LIST, RETR, STOR. Mantiene la sesión y controla la transferencia.</p>
+                    <pre class="code">USER anonymous
+TYPE I
+LIST</pre>
+                </div>
+                <div class="card">
+                    <span class="chip accent">Port 20</span>
+                    <h3>Canal de Datos</h3>
+                    <p class="muted">Abierto únicamente para el movimiento real de bytes. Se cierra al terminar la transferencia.</p>
+                    <div class="progress"><div class="bar"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="seguridad" class="section dark-bg">
+            <div class="wrap">
+                <div class="grid two-col">
+                    <div>
+                        <h2>La evolución de la seguridad</h2>
+                        <p class="muted">El FTP clásico transmite credenciales en texto plano; esto es inseguro en redes públicas.</p>
+                    </div>
+                    <div class="cards-row">
+                        <div class="small-card">
+                            <h4>FTP Classic</h4>
+                            <p class="muted">Sin cifrado — vulnerable a ataques 'Man-in-the-Middle'.</p>
+                        </div>
+                        <div class="small-card recommended">
+                            <h4>SFTP (SSH)</h4>
+                            <p class="muted">Todo el tráfico viaja por un túnel SSH cifrado — recomendado para producción.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta">
+            <div class="wrap text-center">
+                <h2>¿Listo para conectar con el futuro?</h2>
+                <p class="muted">Domina los protocolos que mueven la información en la red.</p>
+                <a class="btn primary large" href="#">Domina los Protocolos</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <div>FTP_ARCHIVE v1.0</div>
+            <div class="muted">© 2026 — Guía educativa. RFC 959 • Documentación</div>
+        </div>
+    </footer>
+</body>
+</html>

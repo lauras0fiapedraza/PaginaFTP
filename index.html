@@ -15,7 +15,10 @@
                 <a href="#protocolo" class="active">Protocolo</a>
                 <a href="#flujo">Flujo</a>
                 <a href="#puertos">Puertos</a>
+                <a href="#modos">Modos</a>
+                <a href="#comandos">Comandos</a>
                 <a href="#seguridad">Seguridad</a>
+                <a href="#alternativas">Alternativas</a>
             </nav>
         </div>
     </header>
@@ -40,6 +43,9 @@
                     <h2>¿Qué es FTP?</h2>
                     <p class="muted">Imagina un <strong>Buzón Digital</strong> universal. FTP (File Transfer Protocol) define cómo dos sistemas intercambian archivos de forma ordenada, confiable y estandarizada.</p>
                     <p>FTP separa el control (comandos) del canal de datos. Se usa para listar, subir y bajar archivos entre un cliente y un servidor remoto.</p>
+                    <div style="margin-top:16px;padding:12px;background:rgba(0,219,233,0.08);border-left:3px solid var(--cyan);border-radius:6px;">
+                        <p style="margin:0;font-size:13px;"><strong>Nota:</strong> FTP fue estandarizado en 1971 (RFC 959) y sigue siendo fundamental en la transferencia de datos, aunque en entornos modernos se prefiere SFTP por seguridad.</p>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="icon">
@@ -47,6 +53,34 @@
                     </div>
                     <h3>Metáfora del Buzón</h3>
                     <p class="muted">Ordenado, jerárquico y persistente — así piensa FTP sobre archivos y directorios remotos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="modos" class="section wrap">
+            <h2 style="text-align:center;margin-bottom:32px;">Modos de Conexión</h2>
+            <div class="grid two-col">
+                <div class="card">
+                    <span class="chip">Modo Activo</span>
+                    <h3>Conexión Activa</h3>
+                    <p class="muted">El cliente establece el puerto de escucha y el servidor inicia la conexión de datos hacia él.</p>
+                    <ul style="color:var(--muted);margin:12px 0;padding-left:16px;">
+                        <li>Cliente escucha en puerto > 1024</li>
+                        <li>Servidor conecta desde puerto 20</li>
+                        <li>Requiere firewall permisivo en cliente</li>
+                        <li>Histórico, menos común hoy</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <span class="chip accent">Modo Pasivo</span>
+                    <h3>Conexión Pasiva</h3>
+                    <p class="muted">El servidor abre un puerto aleatorio y el cliente se conecta para recibir datos.</p>
+                    <ul style="color:var(--muted);margin:12px 0;padding-left:16px;">
+                        <li>Servidor determina puerto de datos</li>
+                        <li>Cliente inicia ambas conexiones</li>
+                        <li>Mejor para clientes detrás de NAT</li>
+                        <li>Estándar moderno actual</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -104,6 +138,103 @@ LIST</pre>
             </div>
         </section>
 
+        <section id="comandos" class="section dark-bg">
+            <div class="wrap">
+                <h2 style="text-align:center;margin-bottom:32px;">Comandos FTP Principales</h2>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;color:var(--on-surface);">
+                        <thead>
+                            <tr style="border-bottom:2px solid var(--cyan);">
+                                <th style="text-align:left;padding:12px;color:var(--cyan);">Comando</th>
+                                <th style="text-align:left;padding:12px;color:var(--cyan);">Descripción</th>
+                                <th style="text-align:left;padding:12px;color:var(--cyan);">Ejemplo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">USER</td>
+                                <td style="padding:12px;color:var(--muted);">Envía nombre de usuario</td>
+                                <td style="padding:12px;font-size:12px;">USER admin</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">PASS</td>
+                                <td style="padding:12px;color:var(--muted);">Envía contraseña</td>
+                                <td style="padding:12px;font-size:12px;">PASS secreto</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">LIST/NLST</td>
+                                <td style="padding:12px;color:var(--muted);">Lista archivos del directorio</td>
+                                <td style="padding:12px;font-size:12px;">LIST /home/user</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">RETR</td>
+                                <td style="padding:12px;color:var(--muted);">Descarga archivo</td>
+                                <td style="padding:12px;font-size:12px;">RETR documento.pdf</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">STOR</td>
+                                <td style="padding:12px;color:var(--muted);">Sube archivo</td>
+                                <td style="padding:12px;font-size:12px;">STOR imagen.jpg</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">PWD</td>
+                                <td style="padding:12px;color:var(--muted);">Muestra directorio actual</td>
+                                <td style="padding:12px;font-size:12px;">PWD</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">CWD</td>
+                                <td style="padding:12px;color:var(--muted);">Cambia directorio</td>
+                                <td style="padding:12px;font-size:12px;">CWD /uploads</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">MKD</td>
+                                <td style="padding:12px;color:var(--muted);">Crea directorio</td>
+                                <td style="padding:12px;font-size:12px;">MKD nueva_carpeta</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">DELE</td>
+                                <td style="padding:12px;color:var(--muted);">Elimina archivo</td>
+                                <td style="padding:12px;font-size:12px;">DELE antiguo.txt</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;font-family:JetBrains Mono;color:var(--accent);">QUIT</td>
+                                <td style="padding:12px;color:var(--muted);">Cierra conexión</td>
+                                <td style="padding:12px;font-size:12px;">QUIT</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section wrap">
+            <h2 style="text-align:center;margin-bottom:32px;">Tipos de Transferencia</h2>
+            <div class="grid two-col">
+                <div class="card">
+                    <span class="chip">ASCII</span>
+                    <h3>Modo Texto</h3>
+                    <p class="muted">Convierte saltos de línea según el sistema operativo destino (LF → CRLF en Windows, etc.).</p>
+                    <ul style="color:var(--muted);margin:12px 0;padding-left:16px;">
+                        <li>Archivos de texto (.txt, .html)</li>
+                        <li>Fuente de código (.py, .js)</li>
+                        <li>Puede corromper binarios</li>
+                        <li>Comando: <code style="color:var(--cyan);">TYPE A</code></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <span class="chip accent">BINARIO</span>
+                    <h3>Modo Binario</h3>
+                    <p class="muted">Transferencia byte-por-byte sin conversión. Seguro para cualquier tipo de archivo.</p>
+                    <ul style="color:var(--muted);margin:12px 0;padding-left:16px;">
+                        <li>Imágenes (.jpg, .png)</li>
+                        <li>Ejecutables (.exe, .zip)</li>
+                        <li>Audio/Vídeo (.mp3, .mp4)</li>
+                        <li>Comando: <code style="color:var(--cyan);">TYPE I</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="seguridad" class="section dark-bg">
             <div class="wrap">
                 <div class="grid two-col">
@@ -121,6 +252,65 @@ LIST</pre>
                             <p class="muted">Todo el tráfico viaja por un túnel SSH cifrado — recomendado para producción.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="alternativas" class="section dark-bg">
+            <div class="wrap">
+                <h2 style="text-align:center;margin-bottom:32px;">Alternativas Modernas</h2>
+                <p class="muted" style="text-align:center;margin-bottom:32px;">FTP sigue siendo usado, pero existen protocolos más seguros y eficientes:</p>
+                <div class="grid two-col">
+                    <div class="small-card">
+                        <h4>SFTP (SSH File Transfer)</h4>
+                        <p class="muted"><strong>✓ Recomendado</strong> — Todo cifrado, autenticación SSH, puerto 22. Estándar actual para producción.</p>
+                    </div>
+                    <div class="small-card">
+                        <h4>FTPS (FTP sobre SSL/TLS)</h4>
+                        <p class="muted">FTP con cifrado SSL/TLS, puerto 990. Requiere certificados, menos común que SFTP.</p>
+                    </div>
+                    <div class="small-card">
+                        <h4>SCP (Secure Copy)</h4>
+                        <p class="muted">Basado en SSH, sintaxis simple. Ideal para copias puntuales entre servidores.</p>
+                    </div>
+                    <div class="small-card">
+                        <h4>rsync</h4>
+                        <p class="muted">Sincronización bidireccional, solo copia cambios. Excelente para backups y sincronización.</p>
+                    </div>
+                    <div class="small-card">
+                        <h4>HTTP/HTTPS</h4>
+                        <p class="muted">Descargas web, muy eficiente en redes públicas. No requiere credenciales FTP.</p>
+                    </div>
+                    <div class="small-card">
+                        <h4>AWS S3 / Cloud Storage</h4>
+                        <p class="muted">Escalable, seguro, APIs modernas. Solución cloud para almacenamiento distribuido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section wrap">
+            <h2 style="text-align:center;margin-bottom:32px;">Preguntas Frecuentes</h2>
+            <div style="display:grid;gap:16px;">
+                <div style="background:var(--surface);border-left:3px solid var(--cyan);padding:16px;border-radius:6px;">
+                    <h4 style="margin:0 0 8px;color:var(--on-surface);">¿Cuál es la diferencia entre FTP activo y pasivo?</h4>
+                    <p style="margin:0;color:var(--muted);font-size:14px;">En modo activo, el servidor abre la conexión de datos; en pasivo, el cliente. Pasivo es más compatible con firewalls modernos y es el estándar actual.</p>
+                </div>
+                <div style="background:var(--surface);border-left:3px solid var(--cyan);padding:16px;border-radius:6px;">
+                    <h4 style="margin:0 0 8px;color:var(--on-surface);">¿FTP es seguro?</h4>
+                    <p style="margin:0;color:var(--muted);font-size:14px;">FTP clásico NO es seguro — transmite credenciales en texto plano. Usa SFTP o FTPS en entornos de producción. Para datos públicos o dentro de redes de confianza, puede ser aceptable.</p>
+                </div>
+                <div style="background:var(--surface);border-left:3px solid var(--cyan);padding:16px;border-radius:6px;">
+                    <h4 style="margin:0 0 8px;color:var(--on-surface);">¿Qué cliente FTP debo usar?</h4>
+                    <p style="margin:0;color:var(--muted);font-size:14px;">Opciones populares: FileZilla (GUI, multiplataforma), WinSCP (Windows), Cyberduck (Mac), o línea de comandos con <code style="color:var(--cyan);">ftp</code> o <code style="color:var(--cyan);">sftp</code>.</p>
+                </div>
+                <div style="background:var(--surface);border-left:3px solid var(--cyan);padding:16px;border-radius:6px;">
+                    <h4 style="margin:0 0 8px;color:var(--on-surface);">¿Por qué FTP aún se usa si SFTP es mejor?</h4>
+                    <p style="margin:0;color:var(--muted);font-size:14px;">Compatibilidad heredada. Muchos servidores antiguos, dispositivos IoT y sistemas embebidos solo soportan FTP. Además, algunos ISP ofrecen hosting solo con FTP.</p>
+                </div>
+                <div style="background:var(--surface);border-left:3px solid var(--cyan);padding:16px;border-radius:6px;">
+                    <h4 style="margin:0 0 8px;color:var(--on-surface);">¿Cuál es el máximo tamaño de archivo que puedo transferir?</h4>
+                    <p style="margin:0;color:var(--muted);font-size:14px;">FTP teóricamente no tiene límite, pero depende del servidor (configuración, espacio en disco, timeouts). Archivos > 5GB pueden requerir configuración especial.</p>
                 </div>
             </div>
         </section>
